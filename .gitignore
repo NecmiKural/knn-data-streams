@@ -1,0 +1,18 @@
+# MOA-provided datasets — not redistributed
+*.arff
+*.arff.bak
+data/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# OS / IDE / agent
+.DS_Store
+.idea/
+.vscode/
+.agents/
+AGENT_RULES.md

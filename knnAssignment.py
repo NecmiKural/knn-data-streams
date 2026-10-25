@@ -114,7 +114,7 @@ class KNNBase(Classifier):
 ##############################################################
 ################### KNN-CW (Per Class Window) ################
 ##############################################################
-class KNN_cw_1689664(Classifier):
+class KNNClassWindows(Classifier):
     def __init__(self, schema, k=3, w=1000, search_method="LinearNNSearch"):
         super().__init__(schema)
         self.k = k
@@ -183,8 +183,9 @@ class KNN_cw_1689664(Classifier):
 ############## KNN-ASW (Age-Weighted Sampling) ###############
 ##############################################################
 LOG_1_2 = math.log(1.2)  # precompute ln(1.2)
+SEED = 523  # fixed seed for the ejection draws in the reported results
 
-class KNN_asw_1689664(Classifier):
+class KNNAgeWeighted(Classifier):
     def __init__(self, schema, k=3, w=1000, search_method="LinearNNSearch"):
         super().__init__(schema)
         self.k = k
@@ -192,7 +193,7 @@ class KNN_asw_1689664(Classifier):
         self.search = SearchNeighbours(search_method)
         self.window = newWindow(schema)
         self.ages = []  # parallel list: age of each instance in window
-        random.seed(1689664)  # student ID as seed for reproducibility
+        random.seed(SEED)
 
     def __str__(self):
         return "KNN-asw"

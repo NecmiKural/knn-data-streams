@@ -1,4 +1,4 @@
-# MOA-provided datasets — not redistributed
+# MOA-provided datasets, not redistributed
 *.arff
 *.arff.bak
 data/

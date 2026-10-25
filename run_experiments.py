@@ -1,6 +1,5 @@
 """
 COMPX523-26A Assignment 1 - Experiment Runner
-Student ID: 1689664
 
 Runs all 24 experiments (3 algorithms x 2 datasets x 4 configs)
 and generates the CSV result file.
@@ -24,10 +23,9 @@ if not jpype.isJVMStarted():
 
 from capymoa.evaluation import prequential_evaluation
 from capymoa.datasets import Electricity, RBFm_100k
-from knnAssignment import KNNBase, KNN_cw_1689664, KNN_asw_1689664
+from knnAssignment import KNNBase, KNNClassWindows, KNNAgeWeighted
 
-STUDENT_ID = "1689664"
-OUTPUT_FILE = "1689664_results.csv"
+OUTPUT_FILE = "results.csv"
 MAX_INSTANCES = 50000  # use first 50k instances for both datasets
 
 # Parameter configurations
@@ -52,11 +50,11 @@ ALGORITHMS = {
         "window_param": "window_size",  # KNNBase uses 'window_size'
     },
     "knn-cw": {
-        "class": KNN_cw_1689664,
+        "class": KNNClassWindows,
         "window_param": "w",
     },
     "knn-asw": {
-        "class": KNN_asw_1689664,
+        "class": KNNAgeWeighted,
         "window_param": "w",
     },
 }
@@ -91,7 +89,6 @@ def run_experiment(algo_name, algo_info, dataset_name, dataset_class, config):
     wallclock = round(wallclock, 3)
 
     row = {
-        "student_id": STUDENT_ID,
         "dataset": dataset_name,
         "knn_identifier": algo_name,
         "window_size": w,
@@ -110,7 +107,6 @@ def run_experiment(algo_name, algo_info, dataset_name, dataset_class, config):
 
 def main():
     print(f"=== COMPX523-26A Assignment 1 - Experiment Runner ===")
-    print(f"Student ID: {STUDENT_ID}")
     print(f"Max instances: {MAX_INSTANCES}")
     print(f"Output: {OUTPUT_FILE}")
     print()
@@ -134,7 +130,7 @@ def main():
 
     # Write CSV
     fieldnames = [
-        "student_id", "dataset", "knn_identifier", "window_size",
+        "dataset", "knn_identifier", "window_size",
         "k", "accuracy", "recall", "precision", "wallclock"
     ]
 

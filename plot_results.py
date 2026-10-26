@@ -26,10 +26,10 @@ for ax, (dataset, title) in zip(axes, DATASETS.items()):
         xs = [i + (j - 1) * width for i in range(len(SETTINGS))]
         ys = [accuracy[(dataset, variant, w, k)] for w, k in SETTINGS]
         bars = ax.bar(xs, ys, width, color=COLOURS[variant], label=VARIANTS[variant])
-        ax.bar_label(bars, fmt="%.0f", fontsize=7, padding=2)
+        ax.bar_label(bars, fmt="%.1f", fontsize=6, padding=2, rotation=90)
     ax.set_title(title, fontsize=11)
     ax.set_xticks(range(len(SETTINGS)), [f"w={w}, k={k}" for w, k in SETTINGS], fontsize=9)
-    ax.set_ylim(0, 100)
+    ax.set_ylim(0, 108)
     ax.spines[["top", "right"]].set_visible(False)
 axes[0].set_ylabel("Accuracy (%)")
 fig.legend(*axes[0].get_legend_handles_labels(), frameon=False, fontsize=9, loc="upper center", ncol=3, bbox_to_anchor=(0.5, 0.91))
